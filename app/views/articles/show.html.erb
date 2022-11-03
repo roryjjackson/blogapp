@@ -1,0 +1,11 @@
+<p>article show page</p>
+
+  <%= @article.title %> |
+  <%= @article.meta_title %> |
+  <%= @article.summary %>  |
+  <%= @article.content %>  |
+  <%= @article.slug %>  |
+  <%= @article.user_id %>
+  <%# <%= link_to "edit", edit_article_path(article) %>
+  <%# <%= link_to "destroy", article_path(article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+<%= link_to  "back to index", articles_path %>
