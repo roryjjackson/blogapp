@@ -1,17 +1,22 @@
 <p>article show page</p>
 
-  <%= @article.title %> |
-  <%= @article.meta_title %> |
-  <%= @article.summary %>  |
-  <%= @article.content %>  |
-  <%= @article.slug %>  |
-  <%= @article.user_id %>
-  <% @comments.each do |comment| %>
-    <%= comment.title %>
-    <%= comment.content %>
-    <%= link_to "destroy this comment", article_comment_path(comment.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-  <% end %>
-  <%# <%= link_to "edit", edit_article_path(article) %>
-  <%# <%= link_to "destroy", article_path(article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+<%= @article.title %> |
+<%= @article.meta_title %> |
+<%= @article.summary %>  |
+<%= @article.content %>  |
+<%= @article.slug %>  |
+<%= @article.user_id %>
+
+<% @comments.each do |comment| %>
+  <%= comment.title %>
+  <%= comment.content %>
+  <%= link_to "show this specific comment", article_comment_path(comment) %>
+  <%= link_to "destroy this comment", article_comment_path(comment), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+  <%= link_to "edit this comment", edit_article_comment_path(comment) %>
+<% end %>
+
+<%# <%= link_to "edit", edit_article_path(article) %>
+<%# <%= link_to "destroy", article_path(article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+<%= link_to "show comments", article_comments_path(@article) %>
 <%= link_to  "back to index", articles_path %>
 <%= link_to "comment on this article", new_article_comment_path(@article) %>
