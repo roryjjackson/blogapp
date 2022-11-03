@@ -1,0 +1,9 @@
+<p>articles new page</p>
+ <%= simple_form_for(@article) do |f| %>
+    <%= f.input :title %>
+    <%= f.input :meta_title %>
+    <%= f.input :summary %>
+    <%= f.input :content %>
+    <%= f.input :slug %>
+    <%= f.submit "Add Article" %>
+  <% end %>
