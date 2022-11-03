@@ -1,0 +1,10 @@
+ <p>category show page</p>
+<%= @category.title %>
+<%= @category.content %>
+<%= link_to "create a new article", new_category_article_path(@category) %>
+<% @articles.each do |article| %>
+  <%= article.title %>
+  <%= link_to "show", category_article_path(article) %>
+  <%= link_to "destroy", category_article_path(article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+  <%= link_to "edit", edit_category_article_path(article) %>
+<% end %>

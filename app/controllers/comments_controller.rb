@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   def new
     @article = Article.find(params[:article_id])
+    @category = Category.find(params[:category_id])
     @comment = Comment.new
   end
 
@@ -10,7 +11,7 @@ class CommentsController < ApplicationController
     @comment.article_id = @article.id
     @comment.user_id = current_user.id
     if @comment.save
-      redirect_to article_path(@article)
+      redirect_to category_article_path(@article)
     else
       render :new, status: :unprocessable_entity
     end
@@ -40,6 +41,7 @@ class CommentsController < ApplicationController
 
   def show
     @comment = Comment.find(params[:id])
+    @article = Article.find(params[:article_id])
   end
 
   private
