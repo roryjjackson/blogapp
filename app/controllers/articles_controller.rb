@@ -18,6 +18,13 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.all
+    @markers = @articles.geocoded.map do |article| {
+      lat: article.latitude,
+      lng: article.longitude,
+      info_window: render_to_string(partial: "info_window", locals: {article: article}),
+      image_url: helpers.asset_url("https://raw.githubusercontent.com/lewagon/fullstack-images/master/logo.png")
+    }
+    end
   end
 
   def edit
@@ -41,13 +48,6 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
-    # @category = Category.find(params[:id])
-    # @category = Category.find(params[:category_id])
-    # @category = Article.find(params[:category_id])
-    # @category = Article.find(params[:category_id])
-    # @article = Article.find(params[:article_id])
-    # @category = Article.find(params[:category_id])
-    # @x = @article.article_id
     @comments = Comment.where(article_id: @article)
   end
 
