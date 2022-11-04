@@ -1,7 +1,7 @@
  <p>category index</p>
  <%= link_to "new category", new_category_path %>
- <%# <%= cl_image_tag @category.photo.key, height: 300, width: 400, crop: :fill %> %>
 <% @categories.each do |category| %>
+  <%= cl_image_tag category.photo.key, height: 300, width: 400, crop: :fill %>
   <%= category.title %>
   <%= category.content %>
   <%= link_to "show", category_path(category) %>

@@ -21,3 +21,7 @@
 <%# <%= link_to "destroy", article_path(article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
 <%# <%= link_to "show comments", article_comments_path(@article) %> %>
 <%= link_to  "back to category show", category_path(@article.category_id) %>
+<div style="width: 100%; height: 600px;"
+  data-controller="map"
+  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
