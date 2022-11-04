@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :posts
+  # resources :remarks
+  resources :posts do
+    resources :remarks
+  end
+  # resources :likes
+  put '/post/:id/like', to: 'posts#like', as: 'like'
   resources :flats
   devise_for :users
   root to: "pages#home"

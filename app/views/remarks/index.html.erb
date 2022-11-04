@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Remarks</h1>
+
+<div id="remarks">
+  <% @remarks.each do |remark| %>
+    <%= render remark %>
+    <p>
+      <%= link_to "Show this remark", remark %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New remark", new_remark_path %>
