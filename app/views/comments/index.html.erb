@@ -1,5 +1,0 @@
-<% @comments.each do |comment| %>
-  <%= comment.title %>
-  <%= comment.content %>
-  <%= link_to "destroy this comment", article_comments_path(comment), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-<% end %>
