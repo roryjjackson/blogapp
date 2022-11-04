@@ -11,7 +11,9 @@ class CommentsController < ApplicationController
     @article = Article.find(params[:article_id])
     @comment.article_id = @article.id
     @comment.user_id = current_user.id
+    @comment.category_id = @category.id
     if @comment.save
+      # raise
       redirect_to category_article_path(@category, @article)
     else
       render :new, status: :unprocessable_entity
@@ -25,14 +27,19 @@ class CommentsController < ApplicationController
   def edit
     @category = Category.find(params[:category_id])
     @article = Article.find(params[:article_id])
-    @comment = Comment.find(params[:article_id])
+    @comment = Comment.find(params[:id])
   end
 
   def update
+    @category = Category.find(params[:category_id])
     @article = Article.find(params[:article_id])
     @comment = Comment.find(params[:id])
+    @comment.article_id = @article.id
+    @comment.user_id = current_user.id
+    @comment.category_id = @category.id
     @comment.update(comment_params)
-    redirect_to category_article_path(@article)
+    redirect_to category_article_path(@category, @article)
+    # raise
   end
 
   def destroy
@@ -44,8 +51,10 @@ class CommentsController < ApplicationController
   end
 
   def show
-    @comment = Comment.find(params[:id])
+    # raise
+    # @category = Category.find(params[:category_id])
     @article = Article.find(params[:article_id])
+    @comment = Comment.find(params[:id])
   end
 
   private

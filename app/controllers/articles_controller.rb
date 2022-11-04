@@ -21,26 +21,32 @@ class ArticlesController < ApplicationController
   end
 
   def edit
+    @category = Category.find(params[:category_id])
     @article = Article.find(params[:id])
   end
 
   def update
+    @category = Category.find(params[:category_id])
     @article = Article.find(params[:id])
     @article.update(article_params)
-    redirect_to articles_path
+    redirect_to category_path(@category)
   end
 
   def destroy
     @article = Article.find(params[:id])
+    @category = Category.find(params[:category_id])
     @article.destroy
-    redirect_to articles_path
+    redirect_to category_path(@category)
   end
 
   def show
     @article = Article.find(params[:id])
-    @category = Category.find(params[:id])
-    # @article = Article.find(params[:article_id])
+    # @category = Category.find(params[:id])
     # @category = Category.find(params[:category_id])
+    # @category = Article.find(params[:category_id])
+    # @category = Article.find(params[:category_id])
+    # @article = Article.find(params[:article_id])
+    # @category = Article.find(params[:category_id])
     # @x = @article.article_id
     @comments = Comment.where(article_id: @article)
   end
