@@ -1,6 +1,7 @@
 <p>article show page</p>
-
-<%= @article.title %> |
+<% @article.photos.each do |photo| %>
+  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+<% end %><%= @article.title %> |
 <%= @article.meta_title %> |
 <%= @article.summary %>  |
 <%= @article.content %>  |
