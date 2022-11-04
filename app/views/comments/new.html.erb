@@ -1,5 +1,5 @@
 <p>comments new page</p>
- <%= simple_form_for([@article, @comment]) do |f| %>
+ <%= simple_form_for([@category, @article, @comment]) do |f| %>
     <%= f.input :title %>
     <%= f.input :content %>
     <%= f.submit "Add comment" %>

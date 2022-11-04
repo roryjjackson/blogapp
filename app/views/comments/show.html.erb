@@ -1,3 +1,4 @@
 <p>comments show page</p>
 <%= @comment.title %>
 <%= @comment.content %>
+<%= link_to "back to article show", category_article_path(@article, @comment) %>

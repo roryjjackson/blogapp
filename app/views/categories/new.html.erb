@@ -1,0 +1,8 @@
+<p>category new page</p>
+ <%= simple_form_for (@category) do |f| %>
+    <%= f.input :title %>
+    <%= f.input :meta_title %>
+    <%= f.input :content %>
+    <%= f.input :slug %>
+    <%= f.submit "Add category" %>
+  <% end %>
