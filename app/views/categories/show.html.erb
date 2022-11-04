@@ -1,4 +1,5 @@
- <p>category show page</p>
+<p>category show page</p>
+<%= cl_image_tag @category.photo.key, height: 300, width: 400, crop: :fill %>
 <%= @category.title %>
 <%= @category.content %>
 <%= link_to "create a new article", new_category_article_path(@category) %>
