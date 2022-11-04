@@ -14,7 +14,7 @@
   data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 
 <div id='map' style='width: 400px; height: 300px;'></div>
-<script>
+<%# <script>
 mapboxgl.accessToken = 'pk.eyJ1Ijoicm9yeWpqYWNrc29uIiwiYSI6ImNsYTJrcWc1NDBmZjUzcW1icXh0bjF5YXAifQ.M_Oj_37w8g-gLF8LwzvjkA';
 const map = new mapboxgl.Map({
     container: 'map', // container ID
@@ -26,4 +26,4 @@ const map = new mapboxgl.Map({
 map.on('style.load', () => {
     map.setFog({}); // Set the default atmosphere style
 });
-</script>
+</script> %>
