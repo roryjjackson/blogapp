@@ -1,7 +1,14 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Posts</h1>
-
+<%= form_with url: posts_path, method: :get, class: "d-flex" do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Find a post"
+  %>
+  <% end %>
+  <%= submit_tag "Search", class: "btn btn-primary" %>
 <div id="posts">
   <% @posts.each do |post| %>
     <%= render post %>

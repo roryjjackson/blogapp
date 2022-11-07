@@ -20,6 +20,17 @@ class PostsController < ApplicationController
         # image_url: helpers.asset_url("https://raw.githubusercontent.com/lewagon/fullstack-images/master/logo.png")
       }
     end
+
+    if params[:query].present?
+      sql_query = <<~SQL
+        posts.title ILIKE :query
+        OR users.first_name ILIKE :query
+        OR users.last_name ILIKE :query
+      SQL
+      @posts = Post.joins(:user).where(sql_query, query: "%#{params[:query]}%")
+    else
+      @posts = Post.all
+    end
   end
 
   # GET /posts/1 or /posts/1.json
