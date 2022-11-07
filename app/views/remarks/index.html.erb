@@ -6,7 +6,7 @@
   <% @remarks.each do |remark| %>
     <%= render remark %>
     <p>
-      <%= link_to "Show this remark", remark %>
+      <%= link_to "Show this remark", post_remark_path(remark) %>
     </p>
   <% end %>
 </div>

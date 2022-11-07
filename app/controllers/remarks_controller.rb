@@ -4,6 +4,7 @@ class RemarksController < ApplicationController
   # GET /remarks or /remarks.json
   def index
     @remarks = Remark.all
+    @post = Post.find(params[:post_id])
   end
 
   # GET /remarks/1 or /remarks/1.json
@@ -13,19 +14,22 @@ class RemarksController < ApplicationController
   # GET /remarks/new
   def new
     @remark = Remark.new
+    @post = Post.find(params[:post_id])
   end
 
   # GET /remarks/1/edit
   def edit
+    @remark = Remark.find(params[:id])
+    @post = Post.find(params[:post_id])
   end
 
   # POST /remarks or /remarks.json
   def create
     @remark = Remark.new(remark_params)
-
+    @post = Post.find(params[:post_id])
     respond_to do |format|
       if @remark.save
-        format.html { redirect_to remark_url(@remark), notice: "Remark was successfully created." }
+        format.html { redirect_to post_path(@post), notice: "Remark was successfully created." }
         format.json { render :show, status: :created, location: @remark }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -36,9 +40,10 @@ class RemarksController < ApplicationController
 
   # PATCH/PUT /remarks/1 or /remarks/1.json
   def update
+    @post = Post.find(params[:post_id])
     respond_to do |format|
       if @remark.update(remark_params)
-        format.html { redirect_to remark_url(@remark), notice: "Remark was successfully updated." }
+        format.html { redirect_to post_path(@post), notice: "Remark was successfully updated." }
         format.json { render :show, status: :ok, location: @remark }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -49,10 +54,13 @@ class RemarksController < ApplicationController
 
   # DELETE /remarks/1 or /remarks/1.json
   def destroy
+    # raise
+    # raise
+    @post = Post.find(params[:post_id])
     @remark.destroy
-
+    # redirect_to post_remark_path(@post)
     respond_to do |format|
-      format.html { redirect_to remarks_url, notice: "Remark was successfully destroyed." }
+      format.html { redirect_to post_path(@post), notice: "Remark was successfully destroyed." }
       format.json { head :no_content }
     end
   end

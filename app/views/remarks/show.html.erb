@@ -3,7 +3,7 @@
 <%= render @remark %>
 
 <div>
-  <%= link_to "Edit this remark", edit_remark_path(@remark) %> |
+  <%= link_to "Edit this remark", edit_post_remark_path(@remark) %> |
   <%= link_to "Back to remarks", remarks_path %>
 
   <%= button_to "Destroy this remark", @remark, method: :delete %>
