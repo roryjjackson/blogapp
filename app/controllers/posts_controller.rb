@@ -1,6 +1,14 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
 
+
+  def like
+    @post = Post.all.find(params[:id])
+    Like.create(user_id: current_user.id, post_id: @post.id)
+    redirect_to post_path(@post)
+  end
+
+
   # GET /posts or /posts.json
   def index
     @posts = Post.all
@@ -8,14 +16,16 @@ class PostsController < ApplicationController
       {
         lat: post.latitude,
         lng: post.longitude,
-        info_window: render_to_string(partial: "info_window", locals: {post: post}),
-        image_url: helpers.asset_url("https://raw.githubusercontent.com/lewagon/fullstack-images/master/logo.png")
+        # info_window: render_to_string(partial: "info_window", locals: {post: post}),
+        # image_url: helpers.asset_url("https://raw.githubusercontent.com/lewagon/fullstack-images/master/logo.png")
       }
     end
   end
 
   # GET /posts/1 or /posts/1.json
   def show
+    @post = Post.find(params[:id])
+    @remarks = Remark.where(post_id: @post )
   end
 
   # GET /posts/new

@@ -5,6 +5,20 @@
 <div>
   <%= link_to "Edit this post", edit_post_path(@post) %> |
   <%= link_to "Back to posts", posts_path %>
-
+<%= link_to "Comment on this post", new_post_remark_path(@post) %>
   <%= button_to "Destroy this post", @post, method: :delete %>
 </div>
+<% if user_signed_in? %>
+  <% if @post.liked?(current_user) %>
+    <%= button_to "Like", like_path(@post), method: "put", disabled: true %>
+  <% else %>
+    <%= button_to "Like", like_path(@post), method: "put" %>
+  <% end %>
+<% end %>
+<% @remarks.each do |remark| %>
+  <%= remark.title %>
+    <%= link_to "destroy this remark", post_remark_path(@post, remark), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+<%= link_to "edit this remark", edit_post_remark_path(@post, remark) %>
+  <%# <%= link_to "delete this remark", post_remark_path(remark.post_id), method: :delete %> %>
+  <%# <% raise %> %>
+<% end %>

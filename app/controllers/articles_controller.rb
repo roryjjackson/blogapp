@@ -31,14 +31,27 @@ class ArticlesController < ApplicationController
   # end
 
   def index
-    @articles = Article.all
-    @markers = @articles.geocoded.map do |article| {
-      lat: article.latitude,
-      lng: article.longitude,
-      # info_window: render_to_string(partial: "info_window", locals: {article: article}),
-      # image_url: helpers.asset_url("https://raw.githubusercontent.com/lewagon/fullstack-images/master/logo.png")
-    }
+    # @articles = Article.all
+    @category = Category.find(params[:category_id])
+    if params[:query].present?
+      sql_query = <<~SQL
+        articles.content ILKE :query
+        OR articles.summary ILIKE :query
+        OR articles.title ILIKE :query
+        OR category.title ILIKE :query
+        OR category.content ILIKE :query
+      SQL
+      @articles = Article.joins(:category).where(sql_query, query: "%#{ params[:query]}%")
+    else
+      @articles = Article.all
     end
+    # @markers = @articles.geocoded.map do |article| {
+    #   lat: article.latitude,
+    #   lng: article.longitude,
+    #   # info_window: render_to_string(partial: "info_window", locals: {article: article}),
+    #   # image_url: helpers.asset_url("https://raw.githubusercontent.com/lewagon/fullstack-images/master/logo.png")
+    # }
+    # end
   end
 
   def edit
@@ -64,13 +77,13 @@ class ArticlesController < ApplicationController
     # @articles = Article.all
     @article = Article.find(params[:id])
     @comments = Comment.where(article_id: @article)
-    @markers = @article.geocoded.map do |article| {
-      lat: article.latitude,
-      lng: article.longitude,
-      # info_window: render_to_string(partial: "info_window", locals: {article: article}),
-      # image_url: helpers.asset_url("https://raw.githubusercontent.com/lewagon/fullstack-images/master/logo.png")
-    }
-    end
+    # @markers = @article.geocoded.map do |article| {
+    #   lat: article.latitude,
+    #   lng: article.longitude,
+    #   # info_window: render_to_string(partial: "info_window", locals: {article: article}),
+    #   # image_url: helpers.asset_url("https://raw.githubusercontent.com/lewagon/fullstack-images/master/logo.png")
+    # }
+    # end
   end
 
   private

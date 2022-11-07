@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  resources :posts
-  resources :flats
+  # resources :remarks
+  resources :posts do
+    resources :remarks
+  end
+  # resources :likes
+  put '/post/:id/like', to: 'posts#like', as: 'like'
   devise_for :users
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
