@@ -3,10 +3,13 @@
 <%= render @post %>
 
 <div>
+<% if current_user == @post.user_id %>
   <%= link_to "Edit this post", edit_post_path(@post) %> |
   <%= link_to "Back to posts", posts_path %>
-<%= link_to "Comment on this post", new_post_remark_path(@post) %>
   <%= button_to "Destroy this post", @post, method: :delete %>
+<% else %>
+<% end %>
+<%= link_to "Comment on this post", new_post_remark_path(@post) %>
 </div>
 <% if user_signed_in? %>
   <% if @post.liked?(current_user) %>
@@ -16,9 +19,13 @@
   <% end %>
 <% end %>
 <% @remarks.each do |remark| %>
-  <%= remark.title %>
+  <% if current_user == remark.user_id %>
+    <%= remark.title %>
     <%= link_to "destroy this remark", post_remark_path(@post, remark), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-<%= link_to "edit this remark", edit_post_remark_path(@post, remark) %>
+    <%= link_to "edit this remark", edit_post_remark_path(@post, remark) %>
+  <% else %>
+    <%= remark.title %>
+  <% end %>
   <%# <%= link_to "delete this remark", post_remark_path(remark.post_id), method: :delete %> %>
   <%# <% raise %> %>
 <% end %>
