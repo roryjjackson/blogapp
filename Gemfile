@@ -7,6 +7,7 @@ gem "dotenv-rails", groups: [:development, :test]
 gem "cloudinary"
 gem "geocoder"
 gem "pg_search"
+gem "faker"
 # gem "algoliasearch-rails"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
