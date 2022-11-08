@@ -14,9 +14,9 @@ class RemarksController < ApplicationController
 
   # GET /remarks/new
   def new
-    authorize @remark
     @remark = Remark.new
     @post = Post.find(params[:post_id])
+    authorize @remark
   end
 
   # GET /remarks/1/edit
@@ -28,9 +28,9 @@ class RemarksController < ApplicationController
 
   # POST /remarks or /remarks.json
   def create
-    authorize @remark
     @remark = Remark.new(remark_params)
     @post = Post.find(params[:post_id])
+    @remark.user_id = current_user
     respond_to do |format|
       if @remark.save
         format.html { redirect_to post_path(@post), notice: "Remark was successfully created." }
@@ -40,12 +40,14 @@ class RemarksController < ApplicationController
         format.json { render json: @remark.errors, status: :unprocessable_entity }
       end
     end
+    authorize @remark
   end
 
   # PATCH/PUT /remarks/1 or /remarks/1.json
   def update
     authorize @remark
     @post = Post.find(params[:post_id])
+    @remark.user_id = current_user
     respond_to do |format|
       if @remark.update(remark_params)
         format.html { redirect_to post_path(@post), notice: "Remark was successfully updated." }
