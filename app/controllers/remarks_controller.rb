@@ -61,13 +61,9 @@ class RemarksController < ApplicationController
 
   # DELETE /remarks/1 or /remarks/1.json
   def destroy
-    # raise
-    # raise
     authorize @remark
-
     @post = Post.find(params[:post_id])
     @remark.destroy
-    # redirect_to post_remark_path(@post)
     respond_to do |format|
       format.html { redirect_to post_path(@post), notice: "Remark was successfully destroyed." }
       format.json { head :no_content }

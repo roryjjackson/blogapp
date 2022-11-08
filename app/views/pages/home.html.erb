@@ -1,22 +1,2 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
-<%# <%= link_to "create article", category_articles_path %>
-<%= link_to "index categories page", categories_path %>
-<% @categories.each do |category| %>
-  <%= category.title %>
-  <%= category.content %>
-  <%= link_to "edit this category", edit_category_path(category) %>
-  <%= link_to "delete this category", category_path(category), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-  <%= link_to "article index page", category_articles_path(category) %>
-<% end %>
-\
-\
-\
+<h1>LifeCycle</h1>
 <%= link_to "posts index", posts_path %>
-<%# authorization to write and create
-commenting dropdown removed, should be auto assigned
-like counter
-map counters need info
-filter
-navbar
-%>
