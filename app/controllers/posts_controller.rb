@@ -1,14 +1,11 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[ show edit update destroy ]
-
+  before_action :set_post, only: %i[show edit update destroy]
 
   def like
     @post = Post.all.find(params[:id])
     Like.create(user_id: current_user.id, post_id: @post.id)
     redirect_to post_path(@post)
   end
-
-
   # GET /posts or /posts.json
   def index
     @posts = policy_scope(Post)
@@ -16,9 +13,7 @@ class PostsController < ApplicationController
     @markers = @posts.geocoded.map do |post|
       {
         lat: post.latitude,
-        lng: post.longitude,
-        # info_window: render_to_string(partial: "info_window", locals: {post: post}),
-        # image_url: helpers.asset_url("https://raw.githubusercontent.com/lewagon/fullstack-images/master/logo.png")
+        lng: post.longitude
       }
     end
 
@@ -36,7 +31,6 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
-    # @remarks = remark_scope(Remark)
     @post = Post.find(params[:id])
     @remarks = Remark.where(post_id: @post)
     authorize @post
@@ -51,7 +45,6 @@ class PostsController < ApplicationController
   # GET /posts/1/edit
   def edit
     authorize @post
-
   end
 
   # POST /posts or /posts.json
@@ -72,7 +65,6 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
     authorize @post
-
     respond_to do |format|
       if @post.update(post_params)
         format.html { redirect_to post_url(@post), notice: "Post was successfully updated." }

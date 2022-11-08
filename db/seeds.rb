@@ -14,7 +14,6 @@ puts "destroying everything!"
 Post.destroy_all
 User.destroy_all
 Remark.destroy_all
-Like.destroy_all
 
 puts "creating 3 users"
 

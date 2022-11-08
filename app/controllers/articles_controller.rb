@@ -16,22 +16,7 @@ class ArticlesController < ApplicationController
     end
   end
 
-  # def create
-  #   @flat = Flat.new(flat_params)
-
-  #   respond_to do |format|
-  #     if @flat.save
-  #       format.html { redirect_to flat_url(@flat), notice: "Flat was successfully created." }
-  #       format.json { render :show, status: :created, location: @flat }
-  #     else
-  #       format.html { render :new, status: :unprocessable_entity }
-  #       format.json { render json: @flat.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
-
   def index
-    # @articles = Article.all
     @category = Category.find(params[:category_id])
     if params[:query].present?
       sql_query = <<~SQL
@@ -45,13 +30,6 @@ class ArticlesController < ApplicationController
     else
       @articles = Article.all
     end
-    # @markers = @articles.geocoded.map do |article| {
-    #   lat: article.latitude,
-    #   lng: article.longitude,
-    #   # info_window: render_to_string(partial: "info_window", locals: {article: article}),
-    #   # image_url: helpers.asset_url("https://raw.githubusercontent.com/lewagon/fullstack-images/master/logo.png")
-    # }
-    # end
   end
 
   def edit
@@ -74,16 +52,8 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    # @articles = Article.all
     @article = Article.find(params[:id])
     @comments = Comment.where(article_id: @article)
-    # @markers = @article.geocoded.map do |article| {
-    #   lat: article.latitude,
-    #   lng: article.longitude,
-    #   # info_window: render_to_string(partial: "info_window", locals: {article: article}),
-    #   # image_url: helpers.asset_url("https://raw.githubusercontent.com/lewagon/fullstack-images/master/logo.png")
-    # }
-    # end
   end
 
   private
