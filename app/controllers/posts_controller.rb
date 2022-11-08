@@ -11,6 +11,7 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
+    @posts = policy_scope(Post)
     @posts = Post.all
     @markers = @posts.geocoded.map do |post|
       {
@@ -35,23 +36,28 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
+    # @remarks = remark_scope(Remark)
     @post = Post.find(params[:id])
-    @remarks = Remark.where(post_id: @post )
+    @remarks = Remark.where(post_id: @post)
+    authorize @post
   end
 
   # GET /posts/new
   def new
     @post = Post.new
+    authorize @post
   end
 
   # GET /posts/1/edit
   def edit
+    authorize @post
+
   end
 
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
-
+    authorize @post
     respond_to do |format|
       if @post.save
         format.html { redirect_to post_url(@post), notice: "Post was successfully created." }
@@ -65,6 +71,8 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
+    authorize @post
+
     respond_to do |format|
       if @post.update(post_params)
         format.html { redirect_to post_url(@post), notice: "Post was successfully updated." }
@@ -78,6 +86,8 @@ class PostsController < ApplicationController
 
   # DELETE /posts/1 or /posts/1.json
   def destroy
+    authorize @post
+
     @post.destroy
 
     respond_to do |format|

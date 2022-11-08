@@ -3,6 +3,7 @@ class RemarksController < ApplicationController
 
   # GET /remarks or /remarks.json
   def index
+    authorize @remark
     @remarks = Remark.all
     @post = Post.find(params[:post_id])
   end
@@ -13,18 +14,21 @@ class RemarksController < ApplicationController
 
   # GET /remarks/new
   def new
+    authorize @remark
     @remark = Remark.new
     @post = Post.find(params[:post_id])
   end
 
   # GET /remarks/1/edit
   def edit
+    authorize @remark
     @remark = Remark.find(params[:id])
     @post = Post.find(params[:post_id])
   end
 
   # POST /remarks or /remarks.json
   def create
+    authorize @remark
     @remark = Remark.new(remark_params)
     @post = Post.find(params[:post_id])
     respond_to do |format|
@@ -40,6 +44,7 @@ class RemarksController < ApplicationController
 
   # PATCH/PUT /remarks/1 or /remarks/1.json
   def update
+    authorize @remark
     @post = Post.find(params[:post_id])
     respond_to do |format|
       if @remark.update(remark_params)
@@ -56,6 +61,8 @@ class RemarksController < ApplicationController
   def destroy
     # raise
     # raise
+    authorize @remark
+
     @post = Post.find(params[:post_id])
     @remark.destroy
     # redirect_to post_remark_path(@post)
