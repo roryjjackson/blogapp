@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
 
   def home
-    @categories = Category.all
+    @posts = Post.all
   end
 end

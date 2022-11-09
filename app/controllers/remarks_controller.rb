@@ -30,7 +30,8 @@ class RemarksController < ApplicationController
   def create
     @remark = Remark.new(remark_params)
     @post = Post.find(params[:post_id])
-    @remark.user_id = current_user
+    @remark.user_id = current_user.id
+    @remark.post_id = @post.id
     respond_to do |format|
       if @remark.save
         format.html { redirect_to post_path(@post), notice: "Remark was successfully created." }

@@ -11,9 +11,11 @@
 <%= link_to "Comment on this post", new_post_remark_path(@post) %>
 <%= link_to "home", root_path %>
 
-<% @remarks.each do |remark| %>
-  <%= link_to "edit this remark", edit_post_remark_path(@post, remark) if (current_user == remark.user_id) || (current_user.admin?) %>
-  <%= remark.title %>
-  <%= link_to "destroy this remark", post_remark_path(@post, remark), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} if (current_user == remark.user_id) || (current_user.admin?) %>
-  <%= remark.title %>
+<% if user_signed_in? %>
+  <% @remarks.each do |remark| %>
+    <%= link_to "edit this remark", edit_post_remark_path(@post, remark) if (current_user.id == remark.user_id) || (current_user.admin?) %>
+    <%= remark.title %>
+    <%= link_to "destroy this remark", post_remark_path(@post, remark), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} if (current_user.id == remark.user_id) || (current_user.admin?) %>
+    <%= remark.title %>
+  <% end %>
 <% end %>

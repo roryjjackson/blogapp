@@ -7,7 +7,8 @@
     <%= f.input :title %>
     <%= f.input :address %>
     <%= f.input :content %>
-    <%= f.input :category, collection: ["sam", "oli"] %>
+    <%= f.input :category, collection: ["Outdoor", "Hospitality", "Finance", "The Arts", "Business", "Trade", "Traditional"] %>
+    <%= f.input :photo, as: :file %>
     <%= f.association :user %>
   </div>
 
