@@ -1,7 +1,9 @@
 <div class="page-content">
-  <h1>LifeCycle</h1>
   <div>
     <%= link_to "New post", new_post_path, class: "btn btn-ghost" if policy(Post).new? %>
+  </div>
+  <div class="home-header">
+    <h1>Featured</h1>
   </div>
   <div class="posts-container">
     <div class="posts-grid">
