@@ -1,0 +1,68 @@
+.index-page-content {
+  min-height: 100vh;
+  margin: 50px auto;
+  max-width: 1280px;
+  background-color: $dark-gray;
+  padding: 50px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+}
+
+.index-posts-container {
+  display: flex;
+  width: 100%;
+}
+
+.index-posts-grid {
+  flex-grow: 1;
+  width: 50%;
+}
+
+.map {
+  height: 100vh;
+  width: 50%;
+  position: sticky;
+  top: 100px;
+}
+
+.index-post-card > img {
+  border-radius: 8px;
+  height: 100%;
+  width: 50%;
+  object-fit: cover;
+  // hei: 120px;
+}
+
+.index-post-card {
+  overflow: hidden;
+  background-color: $dark-gray;
+  overflow: hidden;
+  height: 420px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+}
+.index-post-card p {
+  font-size: 12px;
+  opacity: .7;
+  margin: 0;
+  color: $white;
+  text-decoration: none;
+}
+
+.index-post-card h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  color: $white;
+  text-decoration: none;
+}
+
+.index-post-card .index-post-card-text {
+  padding: 16px;
+}
+
+canvas.mapboxgl-canvas {
+  border-radius: 8px;
+}

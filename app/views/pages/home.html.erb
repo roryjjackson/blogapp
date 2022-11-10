@@ -13,7 +13,8 @@
             <%= cl_image_tag post.photo.key %>
             <div class="post-card-text">
               <h2><%= post.title %></h2>
-              <p><%= post.user_id %></p>
+              <p>Created by - <%= post.user_id %></p>
+              <p><%= @post.created_at.to_date %></p>
             </div>
           </div>
         <% end %>
