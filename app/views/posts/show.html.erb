@@ -1,21 +1,29 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @post %>
-
-<% if policy(@post).edit? %>
-  <%= link_to "Edit this post", edit_post_path(@post) %>
-<% end %>
-
-<%= link_to "Back to posts", posts_path %>
-<%= button_to "Destroy this post", @post, method: :delete if policy(@post).destroy? %>
-<%= link_to "Comment on this post", new_post_remark_path(@post) %>
-<%= link_to "home", root_path %>
-
-<% if user_signed_in? %>
-  <% @remarks.each do |remark| %>
-    <%= link_to "edit this remark", edit_post_remark_path(@post, remark) if (current_user.id == remark.user_id) || (current_user.admin?) %>
-    <%= remark.title %>
-    <%= link_to "destroy this remark", post_remark_path(@post, remark), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} if (current_user.id == remark.user_id) || (current_user.admin?) %>
-    <%= remark.title %>
-  <% end %>
-<% end %>
+<div class="page-content">
+  <h1 id="post-show-title"><%= @post.title %></h1>
+  <%= cl_image_tag @post.photo.key, id: "blog-show-photo" %>
+  <div class="post-show-content-block">
+    <div class="post-data">
+      <h2><%= @post.user_id %></h2>
+      <h3><%= @post.created_at %></h3>
+    </div>
+    <div class="edit-post-button">
+      <% if policy(@post).edit? %>
+        <%= link_to "Edit Post", edit_post_path(@post), class: "btn-ghost" %>
+      <% end %>
+  </div>
+    <p id="post-content"><%= @post.content %></p>
+    <div class="remarks-container">
+      <div class="post-comment">
+        <%= link_to "Comment on this post", new_post_remark_path(@post), class: "btn-ghost" %>
+      </div>
+      <% @remarks.each do |remark| %>
+        <p><%= remark.title %></p>
+        <p><%= remark.content %></p>
+        <div class="comment-buttons">
+          <%= link_to "Edit", edit_post_remark_path(@post, remark), class: "btn-ghost" if (current_user.id == remark.user_id) || (current_user.admin?) %>
+          <%= link_to "Delete", post_remark_path(@post, remark), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn-ghost" if (current_user.id == remark.user_id) || (current_user.admin?) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

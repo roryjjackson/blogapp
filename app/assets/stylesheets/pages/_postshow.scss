@@ -1,0 +1,44 @@
+#blog-show-photo {
+  width: 100%;
+  object-fit: cover;
+  max-height: 600px;
+  border-radius: 8px;
+}
+
+#post-show-title {
+  text-align: center;
+  padding-bottom: 50px;
+}
+
+.comment-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px;
+}
+
+.post-show-content-block {
+  padding: 30px;
+}
+
+.post-data {
+  border-bottom: solid white 1px;
+  padding-bottom: 30px;
+}
+
+#post-content {
+  padding-top: 30px;
+}
+
+.edit-post-button {
+  margin-top: 30px;
+}
+
+.post-comment {
+  margin: 30px 0;
+}
+
+.remarks-container {
+  padding: 30px;
+  border-radius: 8px;
+  background-color: $black;
+}
