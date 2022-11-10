@@ -3,8 +3,8 @@
   <%= cl_image_tag @post.photo.key, id: "blog-show-photo" %>
   <div class="post-show-content-block">
     <div class="post-data">
-      <h2><%= @post.user_id %></h2>
-      <h3><%= @post.created_at %></h3>
+      <h2>Posted - <%= @post.created_at.to_date %></h2>
+      <%# <h3><%= @post.created_at.to_date %></h3>
     </div>
     <div class="edit-post-button">
       <% if policy(@post).edit? %>

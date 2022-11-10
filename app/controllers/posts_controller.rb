@@ -33,6 +33,7 @@ class PostsController < ApplicationController
   # GET /posts/1 or /posts/1.json
   def show
     @post = Post.find(params[:id])
+    # @user = User.where(id: @post.user_id)
     @remarks = Remark.where(post_id: @post)
     authorize @post
   end

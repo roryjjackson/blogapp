@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :flats
   # resources :remarks
   resources :posts do
     resources :remarks
