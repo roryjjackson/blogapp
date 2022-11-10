@@ -1,2 +1,23 @@
-<h1>LifeCycle</h1>
-<%= link_to "posts index", posts_path %>
+<div class="page-content">
+  <div>
+    <%= link_to "New post", new_post_path, class: "btn btn-ghost" if policy(Post).new? %>
+  </div>
+  <div class="home-header">
+    <h1>Featured</h1>
+  </div>
+  <div class="posts-container">
+    <div class="posts-grid">
+      <% @posts.each do |post| %>
+        <%= link_to post do %>
+          <div class="post-card">
+            <%= cl_image_tag post.photo.key %>
+            <div class="post-card-text">
+              <h2><%= post.title %></h2>
+              <p><%= post.user_id %></p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

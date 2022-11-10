@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
+  before_action :authenticate_user!, only: %i[edit update destroy create new show index]
 
   def like
     @post = Post.all.find(params[:id])
@@ -50,6 +51,7 @@ class PostsController < ApplicationController
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
+    @post.user_id = current_user.id
     authorize @post
     respond_to do |format|
       if @post.save
@@ -96,6 +98,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :address, :content, :user_id)
+      params.require(:post).permit(:title, :address, :content, :user_id, :photo)
     end
 end
