@@ -24,3 +24,9 @@
 .dropdown-menu {
   background-color: $orange;
 }
+
+.form-control {
+  margin-right: 20px;
+  // transition: border-color $orange 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: $orange;
+}

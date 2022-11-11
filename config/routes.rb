@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :posts do
     resources :remarks
   end
+  get "about", to: "about#index"
   # resources :likes
   put '/post/:id/like', to: 'posts#like', as: 'like'
   devise_for :users

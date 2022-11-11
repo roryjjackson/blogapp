@@ -1,6 +1,7 @@
 <div class="page-content">
-  <div>
+  <div class="home-page-new-map-buttons">
     <%= link_to "New post", new_post_path, class: "btn btn-ghost" if policy(Post).new? %>
+    <%= link_to "View Map", posts_path, class: "btn btn-ghost" %>
   </div>
   <div class="home-header">
     <h1>Featured</h1>

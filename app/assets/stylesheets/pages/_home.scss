@@ -17,8 +17,9 @@ a:visited { text-decoration: none; }
 a:hover { text-decoration: none; }
 a:active { text-decoration: none; }
 
-.featured-block {
-
+.home-page-new-map-buttons {
+  display: flex;
+  justify-content: space-between;
 }
 
 .home-header {
