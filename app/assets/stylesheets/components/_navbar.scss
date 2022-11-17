@@ -30,3 +30,7 @@
   // transition: border-color $orange 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   transition: $orange;
 }
+
+input.btn.btn-ghost.search {
+  margin-bottom: 0;
+}

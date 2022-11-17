@@ -3,13 +3,24 @@
 }
 
 .form-inputs {
-  width: 50%;
+  width: 80%;
   margin: auto;
 }
 
 .log-in-devise-btns {
   // width: 50%;
-  display: flex;
-  justify-content: space-between;
-  margin: 30px;
+  display: grid;
+  grid-template-columns: auto;
+  grid-gap: 30px;
+}
+
+input.btn {
+  color: $white;
+  border: 1px solid $white;
+  padding: 8px 24px;
+  border-radius: 50px;
+  font-weight: lighter;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  margin-bottom: 20px;
 }
